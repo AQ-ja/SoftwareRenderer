@@ -396,7 +396,7 @@ class Renderer(object):
                                [right[2],up[2],forward[2],camPosition.z],
                                [0,0,0,1]])
 
-        self.viewMatrix = np.linalg.inv(camMatrix)
+        self.viewMatrix = Mlib.matrizInv(camMatrix)
 
 
     def glProjectionMatrix(self, n = 0.1, f = 1000, fov = 60 ):

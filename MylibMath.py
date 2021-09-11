@@ -36,6 +36,43 @@ def cross(vector1, vector2):
         return ArithmeticError("No puede hacerse")
 
 
+def matrizInv(matriz):
+    n = len(matriz)
+    m = matriz
+
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                m[i].append(1)
+            else:
+                m[i].append(0)
+
+    for i in range(n):
+        if m[i][i] == 0.0:
+            ArithmeticError("No puede hacerse")
+        
+        for j in range(n):
+            if i != j:
+                ratio = m[j][i]/m[i][i]
+
+                for k in range(2*n):
+                    m[j][k] = m[j][k] - ratio * m[i][k]
+
+    for i in range(n):
+        divisor = m[i][i]
+        for j in range(2*n):
+            m[i][j] = m[i][j]/divisor
+
+    resultado = [[] for _ in range(n)]
+    for i in range(n):
+        for j in range(n, 2*n):
+            resultado[i].append(m[i][j])
+
+    
+    return resultado
+
+
+
 def Deg2rad(data):
     pi = 22/7
     deg = data 
